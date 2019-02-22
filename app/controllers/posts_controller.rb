@@ -3,6 +3,15 @@ class PostsController < ApplicationController
     @posts = Post.all.order(created_at: :desc)
   end
 
+  def new
+  end
+
+  def create
+    @post = Post.new(content: params[:content])
+    @post.save
+    redirect_to("/posts/index")
+  end
+
   def show
     @post = Post.find_by(id: params[:id])
   end
